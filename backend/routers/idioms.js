@@ -8,7 +8,7 @@ idiomsRouter.get('/', (req, res) => {
   fs.readFile('../idioms.txt', 'utf-8', (err, data) => {
     if (err) {
       console.log(err);
-      res.status(500).send(err);
+      res.status(500).send(err.message);
       return;
     }
 
