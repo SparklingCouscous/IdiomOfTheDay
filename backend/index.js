@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv');
 const cors = require('cors');
+const database = require('./database/datasource');
 
 const idiomsRouter = require('./routers/idioms');
 
@@ -18,7 +19,21 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 })
 
-const port = 8080;
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+database.initialize()
+.then(() => {
+
+  database.sync()
+  .then(() => {
+    console.log('Database connected and synced');
+
+    app.listen(process.env.APP_PORT, () => {
+      console.log(`Server listening on port ${process.env.APP_PORT}`);
+    })
+  })
+  .catch(error => {
+    throw error;
+  });
 })
+.catch(error => {
+  throw error;
+});
