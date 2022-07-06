@@ -1,0 +1,68 @@
+* {box-sizing: border-box;}
+
+.navbar {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar .login {
+  float: right;
+}
+
+.navbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  width: 150px; /* adjust as needed (as long as it doesn't break the navbar) */
+}
+
+.navbar .login button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .login button:hover {
+  background: #ccc;
+}
+
+.idiom {
+    text-align: center;
+    padding-bottom: 0%;
+    margin: 50px;
+}
+
+.idiomDetail {
+    border-style: dotted;
+    border-radius: 4px;
+    padding: 10%;
+    font-size: 3vh;
+}
+
+.idiomButtons {
+    padding:3%;
+}
+
+.idiomButtons button{
+    font-size: 2vh;
+    width: 300px;
+    height: 100px;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
