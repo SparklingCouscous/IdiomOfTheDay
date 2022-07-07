@@ -51,9 +51,10 @@ idiomsRouter.post('/', async (req, res) => {
   const {
     idiom,
     meaning,
+    origin,
   } = req.body;
 
-  if (!idiom || !meaning) {
+  if (!idiom || !meaning || !origin) {
     res.status(400).send('Invalid parameters.');
     return;
   }
@@ -62,6 +63,7 @@ idiomsRouter.post('/', async (req, res) => {
     const record = await create(ModelNames.Idiom, {
       Idiom: idiom,
       Meaning: meaning,
+      Origin: origin,
     });
 
     res.send(record);
