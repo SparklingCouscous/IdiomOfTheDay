@@ -1,9 +1,12 @@
+global.appRoot = __dirname;
+
 const express = require('express')
 const dotenv = require('dotenv');
 const cors = require('cors');
 const database = require('./database/datasource');
 
 const idiomsRouter = require('./routers/idioms');
+const frontendRouter = require('./routers/frontend');
 
 dotenv.config();
 
@@ -13,7 +16,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/idiom', idiomsRouter);
+app.use('/', frontendRouter);
+app.use('/api/idiom', idiomsRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

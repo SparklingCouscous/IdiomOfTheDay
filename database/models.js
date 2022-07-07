@@ -19,6 +19,10 @@ const Models = {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    Origin: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
 }
 
