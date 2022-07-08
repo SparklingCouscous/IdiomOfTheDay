@@ -1,3 +1,7 @@
+
+
+
+
 var Idioms = [
     {idiom: "Man of Few Words", description: "A person who does not speak a great deal; someone who talks with as few words as possible.", rating: 1},
     {idiom: "Dropping Like Flies", description: "To fall down ill or to die in large numbers.", rating: 1},
@@ -6,10 +10,39 @@ var Idioms = [
 
 
 let idiomCounter = 0;
+
+let reply = [];
 function initialIdiom()
 {
-    document.getElementById('Idiom').innerHTML = Idioms[idiomCounter].idiom;
-    document.getElementById('Description').innerHTML = Idioms[idiomCounter].description;
+    // fetch('http://localhost:8080/api/idiom') 
+    // .then(response => { 
+    //     const data = response.json();
+    //     console.log(data);
+    //     console.log(data.then)
+    //     // console.log(data[["PromiseResult"]]);
+    // });
+    
+   
+    fetch('http://localhost:8080/api/idiom')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        console.log(data["Idiom"]);
+
+        document.getElementById('Idiom').innerHTML = data["Idiom"];
+        document.getElementById('Description').innerHTML = data['Meaning'];
+        document.getElementById('Origin').innerHTML = data['Origin'];
+        
+    });
+   
+  
+   
+
+    
+    // document.getElementById('Idiom').innerHTML = reply;
+    
 }
 
 initialIdiom();
@@ -19,8 +52,22 @@ function nextIdiom()
     if(idiomCounter < Idioms.length-1)
     {
         idiomCounter++;
-        document.getElementById('Idiom').innerHTML = Idioms[idiomCounter].idiom;
-        document.getElementById('Description').innerHTML = Idioms[idiomCounter].description;
+
+
+    fetch('http://localhost:8080/api/idiom')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        console.log(data["Idiom"]);
+
+        document.getElementById('Idiom').innerHTML = data["Idiom"];
+        document.getElementById('Description').innerHTML = data['Meaning'];
+        document.getElementById('Origin').innerHTML = data['Origin'];
+        
+    });
+        
 
     }
 
@@ -32,8 +79,21 @@ function previousIdiom()
     if(idiomCounter > 0)
     {
         idiomCounter--;
-        document.getElementById('Idiom').innerHTML = Idioms[idiomCounter].idiom;
-        document.getElementById('Description').innerHTML = Idioms[idiomCounter].description;
+        
+
+        fetch('http://localhost:8080/api/idiom')
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            console.log(data["Idiom"]);
+    
+            document.getElementById('Idiom').innerHTML = data["Idiom"];
+            document.getElementById('Description').innerHTML = data['Meaning'];
+            document.getElementById('Origin').innerHTML = data['Origin'];
+            
+        });
 
     }
 
