@@ -1,0 +1,18 @@
+.content {
+    text-align: center;
+    padding-bottom: 0%;
+    margin: 50px;
+}
+
+.content input {
+    height: 100px;
+    width: 450px;
+}
+
+main button {
+    justify-content: center;
+    margin-top: 5%;
+    padding: 5%;
+    height: 150px;
+    width: 600px;
+}

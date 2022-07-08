@@ -23,7 +23,7 @@ idiomsRouter.get('/', async (req, res) => {
         return;
       }
 
-      res.send(result?.[0]);
+      res.send(result[0]);
 
     } else {
       const result = await findByPk(ModelNames.Idiom, id);
@@ -51,9 +51,10 @@ idiomsRouter.post('/', async (req, res) => {
   const {
     idiom,
     meaning,
+    origin,
   } = req.body;
 
-  if (!idiom || !meaning) {
+  if (!idiom || !meaning || !origin) {
     res.status(400).send('Invalid parameters.');
     return;
   }
@@ -62,13 +63,40 @@ idiomsRouter.post('/', async (req, res) => {
     const record = await create(ModelNames.Idiom, {
       Idiom: idiom,
       Meaning: meaning,
+      Origin: origin,
     });
-
     res.send(record);
 
   } catch (err) { //TODO: Logging/Tracing?
     res.status(500).send('An unexpected error has occurred.');
   }
+});
+
+idiomsRouter.post('/new/', async (req, res) => {
+  const {
+    idiom,
+    meaning,
+    origin,
+  } = req.body;
+
+  if (!idiom || !meaning || !origin) {
+    res.status(400).send('Invalid parameters.');
+    return;
+  }
+
+  console.log(req.body);
+
+  // try {
+  //   const record = await create(ModelNames.Idiom, {
+  //     Idiom: idiom,
+  //     Meaning: meaning,
+  //     Origin: origin,
+  //   });
+  //   res.send(record);
+
+  // } catch (err) { //TODO: Logging/Tracing?
+  //   res.status(500).send('An unexpected error has occurred.');
+  // }
 });
 
 module.exports = idiomsRouter;
