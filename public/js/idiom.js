@@ -47,62 +47,67 @@ function initialIdiom()
 
 initialIdiom();
 
-function nextIdiom() 
-{
-    if(idiomCounter < Idioms.length-1)
-    {
-        idiomCounter++;
+
+const d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
 
 
-    fetch('http://localhost:8080/api/idiom')
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        console.log(data);
-        console.log(data["Idiom"]);
+// function nextIdiom() 
+// {
+//     if(idiomCounter < Idioms.length-1)
+//     {
+//         idiomCounter++;
 
-        document.getElementById('Idiom').innerHTML = data["Idiom"];
-        document.getElementById('Description').innerHTML = data['Meaning'];
-        document.getElementById('Origin').innerHTML = data['Origin'];
+
+//     fetch('http://localhost:8080/api/idiom')
+//     .then((response) => {
+//         return response.json();
+//     })
+//     .then((data) => {
+//         console.log(data);
+//         console.log(data["Idiom"]);
+
+//         document.getElementById('Idiom').innerHTML = data["Idiom"];
+//         document.getElementById('Description').innerHTML = data['Meaning'];
+//         document.getElementById('Origin').innerHTML = data['Origin'];
         
-    });
-        
-
-    }
-
-    console.log('next');
-}
-
-function previousIdiom() 
-{
-    if(idiomCounter > 0)
-    {
-        idiomCounter--;
+//     });
         
 
-        fetch('http://localhost:8080/api/idiom')
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            console.log(data["Idiom"]);
+//     }
+
+//     console.log('next');
+// }
+
+// function previousIdiom() 
+// {
+//     if(idiomCounter > 0)
+//     {
+//         idiomCounter--;
+        
+
+//         fetch('http://localhost:8080/api/idiom')
+//         .then((response) => {
+//             return response.json();
+//         })
+//         .then((data) => {
+//             console.log(data);
+//             console.log(data["Idiom"]);
     
-            document.getElementById('Idiom').innerHTML = data["Idiom"];
-            document.getElementById('Description').innerHTML = data['Meaning'];
-            document.getElementById('Origin').innerHTML = data['Origin'];
+//             document.getElementById('Idiom').innerHTML = data["Idiom"];
+//             document.getElementById('Description').innerHTML = data['Meaning'];
+//             document.getElementById('Origin').innerHTML = data['Origin'];
             
-        });
+//         });
 
-    }
+//     }
 
-    console.log('previous');
-}
+//     console.log('previous');
+// }
 
-const nextButton = document.getElementById('Next');
-const previousButton = document.getElementById('Previous');
-const loginButton = document.getElementById('Login');
+// const nextButton = document.getElementById('Next');
+// const previousButton = document.getElementById('Previous');
+// const loginButton = document.getElementById('Login');
 
-nextButton.addEventListener('click', nextIdiom);
-previousButton.addEventListener('click', previousIdiom);
+// nextButton.addEventListener('click', nextIdiom);
+// previousButton.addEventListener('click', previousIdiom);
