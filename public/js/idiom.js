@@ -41,73 +41,13 @@ function initialIdiom()
    
 
     
-    // document.getElementById('Idiom').innerHTML = reply;
+   
     
 }
 
 initialIdiom();
 
-
 const d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
 
 
-// function nextIdiom() 
-// {
-//     if(idiomCounter < Idioms.length-1)
-//     {
-//         idiomCounter++;
-
-
-//     fetch('http://localhost:8080/api/idiom')
-//     .then((response) => {
-//         return response.json();
-//     })
-//     .then((data) => {
-//         console.log(data);
-//         console.log(data["Idiom"]);
-
-//         document.getElementById('Idiom').innerHTML = data["Idiom"];
-//         document.getElementById('Description').innerHTML = data['Meaning'];
-//         document.getElementById('Origin').innerHTML = data['Origin'];
-        
-//     });
-        
-
-//     }
-
-//     console.log('next');
-// }
-
-// function previousIdiom() 
-// {
-//     if(idiomCounter > 0)
-//     {
-//         idiomCounter--;
-        
-
-//         fetch('http://localhost:8080/api/idiom')
-//         .then((response) => {
-//             return response.json();
-//         })
-//         .then((data) => {
-//             console.log(data);
-//             console.log(data["Idiom"]);
-    
-//             document.getElementById('Idiom').innerHTML = data["Idiom"];
-//             document.getElementById('Description').innerHTML = data['Meaning'];
-//             document.getElementById('Origin').innerHTML = data['Origin'];
-            
-//         });
-
-//     }
-
-//     console.log('previous');
-// }
-
-// const nextButton = document.getElementById('Next');
-// const previousButton = document.getElementById('Previous');
-// const loginButton = document.getElementById('Login');
-
-// nextButton.addEventListener('click', nextIdiom);
-// previousButton.addEventListener('click', previousIdiom);
