@@ -1,5 +1,5 @@
 var newIdiom = { idiom: "", meanig: "", origin: "", rating: "" };
-
+// var axios = require("axios");
 const form = document.getElementById("idiomForm");
 const submitButtom = document.getElementById("Submit");
 const idiom = document.getElementById("idiom");
@@ -37,13 +37,39 @@ if (searchParams.get("code") !== null) {
   // logged in
   // remove the query parameters
   window.history.replaceState({}, document.title, "admin");
+
+  // get state and PKCE
+  const state = searchParams.get("state");
+  const codeVerifier = sessionStorage.getItem(`codeVerifier-${state}`);
+  sessionStorage.removeItem(`codeVerifier-${state}`);
+  if (codeVerifier === null) {
+    throw new Error("Unexpected code");
+  }
+
+  // exchange code for tokens
+  await fetch(
+    `${cognitoLoginUrl}/oauth2/token?grant_type=authorization_code&code=${searchParams.get(
+      "code"
+    )}&client_id=${clientId}&redirect_uri=http://localhost:8080/admin&code_verifier=${codeVerifier}`,
+    {
+      method: "POST",
+      headers: new Headers({
+        "content-type": "application/x-www-form-urlencoded",
+      }),
+      body: new URLSearchParams(),
+      redirect: "follow",
+    }
+  )
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
 } else {
-  console.log("HEIHBJKHB");
   // generate nonce and PKCE
   const state = await generateNonce();
   const codeVerifier = await generateNonce();
   sessionStorage.setItem(`codeVerifier-${state}`, codeVerifier);
   const codeChallenge = base64URLEncode(await sha256(codeVerifier));
+
   // redirect to login
   window.location = `${cognitoLoginUrl}/login?response_type=code&client_id=${clientId}&state=${state}&code_challenge_method=S256&code_challenge=${codeChallenge}&redirect_uri=${window.location}`;
 }
@@ -62,8 +88,6 @@ function addIdiom() {
   // event.preventDefault();
 }
 
-// ENDPOINTS for login / logout buttons:
-
-// LOGIN: https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com/login?response_type=code&client_id=20e1ukc740tq9ced1ikk676119&redirect_uri=http://localhost:8080/admin&state=STATE&scope=openid+aws.cognito.signin.user.admin
+// ENDPOINTS for logout button:
 
 // LOGOUT: https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com/logout?client_id=20e1ukc740tq9ced1ikk676119&logout_uri=http://localhost:8080/
