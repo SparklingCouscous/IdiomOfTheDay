@@ -11,6 +11,8 @@ const cognitoLoginUrl =
   "https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com";
 const clientId = "20e1ukc740tq9ced1ikk676119";
 
+let logoutButtonClicked = false;
+
 submitButtom.addEventListener("click", addIdiom);
 
 const sha256 = async (str) => {
@@ -63,6 +65,9 @@ if (searchParams.get("code") !== null) {
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
+
+  // TODO: remove this once button implementation is up
+  logoutButtonClicked = true;
 } else {
   // generate nonce and PKCE
   const state = await generateNonce();
@@ -72,6 +77,14 @@ if (searchParams.get("code") !== null) {
 
   // redirect to login
   window.location = `${cognitoLoginUrl}/login?response_type=code&client_id=${clientId}&state=${state}&code_challenge_method=S256&code_challenge=${codeChallenge}&redirect_uri=${window.location}`;
+}
+
+// TODO: Add button implementation
+if (logoutButtonClicked) {
+  console.log("Implement button");
+  // Logout on button click
+  const logoutState = await generateNonce();
+  window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
 }
 
 function addIdiom() {
@@ -87,7 +100,3 @@ function addIdiom() {
 
   // event.preventDefault();
 }
-
-// ENDPOINTS for logout button:
-
-// LOGOUT: https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com/logout?client_id=20e1ukc740tq9ced1ikk676119&logout_uri=http://localhost:8080/
