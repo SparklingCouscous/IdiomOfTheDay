@@ -9,6 +9,7 @@ frontendRouter.get("/", (_, res) => {
 
 frontendRouter.get("/admin", (req, res) => {
   res.sendFile(appRoot + "/public/admin-management/admin-management.html");
+  // console.log(req);
   const code = req.query.code;
 
   const config = {

@@ -1,15 +1,23 @@
 var newIdiom = { idiom: "", meanig: "", origin: "", rating: "" };
 
 const form = document.getElementById("idiomForm");
-
 const submitButtom = document.getElementById("Submit");
 const idiom = document.getElementById("idiom");
 const meaning = document.getElementById("meaning");
 const origin = document.getElementById("origin");
+const test = document.getElementById("test");
+const searchParams = new URL(location).searchParams;
 
 submitButtom.addEventListener("click", addIdiom);
 
-const test = document.getElementById("test");
+if (searchParams.get("code") !== null) {
+  // logged in
+
+  // remove the query parameters
+  window.history.replaceState({}, document.title, "/");
+} else {
+  // redirect to LOGIN
+}
 
 function addIdiom() {
   let addedIdiom = idiom.value;
