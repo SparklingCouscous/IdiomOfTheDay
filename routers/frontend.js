@@ -32,6 +32,14 @@ frontendRouter.get("/admin", (req, res) => {
     });
 });
 
+frontendRouter.get("/admin/view", (req, res) => {
+  res.sendFile(appRoot + "/public/admin-management/admin-view-all.html")
+})
+
+frontendRouter.get("/admin/delete", (req, res) => {
+  res.sendFile(appRoot + "/public/admin-management/admin-delete.html")
+})
+
 frontendRouter.get("/js/*", (req, res) => {
   res.sendFile(appRoot + "/public/" + req.url);
 });

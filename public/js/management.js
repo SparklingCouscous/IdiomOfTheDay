@@ -9,8 +9,6 @@ const origin = document.getElementById("origin");
 
 submitButtom.addEventListener("click", addIdiom);
 
-const test = document.getElementById("test");
-
 function addIdiom() {
   let addedIdiom = idiom.value;
   let addedMeaning = meaning.value;
