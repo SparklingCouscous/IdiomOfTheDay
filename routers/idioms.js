@@ -23,7 +23,7 @@ idiomsRouter.get('/', async (req, res) => {
         return;
       }
 
-      res.send(result?.[0]);
+      res.send(result[0]);
 
     } else {
       const result = await findByPk(ModelNames.Idiom, id);
@@ -65,7 +65,6 @@ idiomsRouter.post('/', async (req, res) => {
       Meaning: meaning,
       Origin: origin,
     });
-
     res.send(record);
 
   } catch (err) { //TODO: Logging/Tracing?
