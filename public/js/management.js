@@ -1,5 +1,4 @@
 var newIdiom = { idiom: "", meanig: "", origin: "", rating: "" };
-// var axios = require("axios");
 const form = document.getElementById("idiomForm");
 const submitButtom = document.getElementById("Submit");
 const idiom = document.getElementById("idiom");
@@ -82,15 +81,14 @@ if (searchParams.get("code") !== null) {
   window.location = `${cognitoLoginUrl}/login?response_type=code&client_id=${clientId}&state=${state}&code_challenge_method=S256&code_challenge=${codeChallenge}&redirect_uri=${window.location}`;
 }
 
-async function Logout()
-{
+async function Logout() {
   console.log("Logging Out");
   // Logout on button click
   const logoutState = await generateNonce();
   window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
 }
 
-logoutButton.addEventListener('click', Logout);
+logoutButton.addEventListener("click", Logout);
 
 // TODO: Add button implementation
 if (logoutButtonClicked) {
