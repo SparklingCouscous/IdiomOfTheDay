@@ -31,6 +31,7 @@ idiomsRouter.get("/", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
+    res.redirect("/admin/error");
   }
 });
 
@@ -45,6 +46,7 @@ idiomsRouter.get("/all", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
+    res.redirect("/admin/error");
   }
 });
 
@@ -68,9 +70,11 @@ idiomsRouter.get("/one/:id", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
+    res.redirect("/admin/error");
   }
 })
 
+//Endpoint to update an idiom
 idiomsRouter.post("/update/", async(req, res) => {
   const { id, idiom, meaning, origin } = req.body;
 
@@ -106,6 +110,7 @@ idiomsRouter.post("/update/", async(req, res) => {
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
+    res.redirect("/admin/error");
   }
 })
 
@@ -133,6 +138,7 @@ idiomsRouter.post("/delete", async(req, res) => {
   } catch(err) {
     console.log(err);
     res.status(500).send("An unexpected error has occured.");
+    res.redirect("/admin/error");
   }
 })
 
@@ -159,6 +165,7 @@ idiomsRouter.post("/", async (req, res) => {
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
+    res.redirect("/admin/error");
   }
 });
 

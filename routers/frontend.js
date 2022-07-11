@@ -45,6 +45,10 @@ frontendRouter.get("/admin/delete", (req, res) => {
   res.sendFile(appRoot + "/public/admin-management/admin-delete.html")
 })
 
+frontendRouter.get("/admin/error", (req, res) => {
+  res.sendFile(appRoot + "/public/admin-management/admin-error.html")
+})
+
 frontendRouter.get("/js/*", (req, res) => {
   res.sendFile(appRoot + "/public/" + req.url);
 });

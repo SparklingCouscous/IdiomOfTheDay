@@ -5,17 +5,16 @@
     <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
     <style lang="en" type="text/css" id="dark-mode-native-style"></style>
     <head>
-        <script type="module" src="../js/delete.js" async></script>
         <link rel="stylesheet" href="../styles/admin-management.css">
         <link rel="stylesheet" href="../styles/styles.css">
-        <title>Delete Idiom</title>
+        <title>Error</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <header>
             <section class="navbar">
-                <a href="./index.html">IDIOM OF THE DAY</a>
+                <a href="/">IDIOM OF THE DAY</a>
                 <a href="/admin">ADMIN</a>
                 <a href="/admin/view">VIEW ALL IDIOMS</a>
                 <a href="/admin/delete">DELETE AN IDIOM</a>
@@ -24,16 +23,7 @@
         </header>
         <main>
             <section class="content">
-                <form action="http://localhost:8080/api/idiom/delete" method="POST" id="deleteForm">
-                    <p>Delete Idiom By its ID</p>
-                    <input type="number" placeholder="ID" name="id" id="idiom" required>
-                    <br>
-                    <button type="submit" id="Submit">Delete Idiom</button>
-                    </form>
-                </section>
-
-            <section>
-                <p id="test"></p>
+                <h1> Oops! Looks like something went wrong!</h1>
             </section>
         </main>
     </body>

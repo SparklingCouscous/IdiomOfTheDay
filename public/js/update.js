@@ -27,7 +27,5 @@ function getIdiom()
         updateIdiom.value = data["Idiom"];
         updateMeaning.value = data["Meaning"];
         updateOrigin.value = data["Origin"];
-        console.log(data);
-
     });
 }

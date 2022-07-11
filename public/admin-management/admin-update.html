@@ -25,19 +25,19 @@
         <main>
             <section class="content">
                 <p>Find Idiom by ID to update</p>
-                <input type="text" placeholder="ID" name="searchId" id="searchIdiom">
+                <input type="number" placeholder="ID" name="searchId" id="searchIdiom">
                 <button id="search">Search for Idiom</button>
             </section>
             <section class="content">
                 <form action="http://localhost:8080/api/idiom/update/" method="POST" id="idiomForm">
                     <p>ID</p>
-                    <input type="text" placeholder="ID" name="id" id="updateId" readonly>
+                    <input type="number" placeholder="ID" name="id" id="updateId" disabled>
                     <p>Update Idiom</p>
-                    <input type="text" placeholder="Idiom" name="idiom" id="updateIdiom">
+                    <input type="text" placeholder="Idiom" name="idiom" id="updateIdiom" required>
                     <p>Update meaning</p>
-                    <input type="text" placeholder="Meaning" name="meaning" id="updateMeaning">
+                    <input type="text" placeholder="Meaning" name="meaning" id="updateMeaning" required>
                     <p>Update origin</p>
-                    <input type="text" placeholder="Origin" name="origin" id="updateOrigin">
+                    <input type="text" placeholder="Origin" name="origin" id="updateOrigin" required>
                     <br>
                     <button type="submit" id="Submit">Update Idiom</button>
                     </form>
