@@ -97,7 +97,7 @@ idiomsRouter.post("/update/", async(req, res) => {
       return;
     }
     else {
-      const temp = await update(ModelNames.Idiom, {
+      const temp = await updateByPK(ModelNames.Idiom, {
         id: id,
         Idiom: idiom,
         Meaning: meaning,
@@ -130,7 +130,7 @@ idiomsRouter.post("/delete", async(req, res) => {
       return;
     }
     else {
-      const temp = await destroy(ModelNames.Idiom, id);
+      const temp = await destroyByPK(ModelNames.Idiom, id);
       console.log("deleted entry");
       res.redirect('/admin/view');
     }
