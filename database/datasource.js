@@ -63,18 +63,20 @@ const update = async (modelName, data, options = {}) => {
   return await model.update(data, options);
 }
 
+//Update by id
 const updateByPK = async (modelName, data, options = {}) => {
   const model = getModelDefinitions()[modelName];
   return await model.update(data, 
     {where: {id: options}});
 }
 
-//Delete entry by ID
+
 const destroy = async (modelName, options = {}) => {
   const model = getModelDefinitions()[modelName];
   return await model.destroy(options);
 }
 
+//Delete entry by ID
 const destroyByPK = async (modelName, options = {}) => {
   const model = getModelDefinitions()[modelName];
   return await model.destroy({
