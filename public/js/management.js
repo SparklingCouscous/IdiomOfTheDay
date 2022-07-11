@@ -38,7 +38,7 @@ const base64URLEncode = (string) => {
     .replace(/=+$/, "");
 };
 
-if (searchParams.get("code") !== null) {
+if (searchParams.get("code") !== null || !!localStorage.getItem('access_token')) {
   // logged in
   // remove the query parameters
   window.history.replaceState({}, document.title, "admin");
@@ -65,8 +65,8 @@ if (searchParams.get("code") !== null) {
       redirect: "follow",
     }
   )
-    .then((response) => response.text())
-    .then((result) => console.log(result))
+    .then((response) => response.json())
+    .then((result) => localStorage.setItem('access_token', result.access_token))
     .catch((error) => console.log("error", error));
 
   // TODO: remove this once button implementation is up
@@ -87,6 +87,7 @@ async function Logout()
   console.log("Logging Out");
   // Logout on button click
   const logoutState = await generateNonce();
+  localStorage.clear('access_token');
   window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
 }
 
@@ -106,10 +107,25 @@ function addIdiom() {
   let addedOrigin = origin.value;
 
   newIdiom.idiom = addedIdiom;
-  newIdiom.meanig = addedMeaning;
+  newIdiom.meaning = addedMeaning;
   newIdiom.origin = addedOrigin;
 
-  console.log(newIdiom);
+  fetch('http://localhost:8080/api/idiom', {
+    method: 'POST',
+    headers: {
+      authorization: localStorage.getItem('access_token'),
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newIdiom),
+  })
+  .then(response => response.json())
+  .then(_ => {
+    idiom.value = "";
+    meaning.value = "";
+    origin.value = "";
+    alert('Idiom created successfully!');
+  })
+  .catch(err => console.log(err));
 
   // event.preventDefault();
 }

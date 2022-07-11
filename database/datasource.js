@@ -66,7 +66,7 @@ const update = async (modelName, data, options = {}) => {
 //Update by id
 const updateByPK = async (modelName, data, options = {}) => {
   const model = getModelDefinitions()[modelName];
-  return await model.update(data, 
+  return await model.update(data,
     {where: {id: options}});
 }
 
@@ -115,7 +115,9 @@ module.exports = {
   create,
   bulkCreate,
   update,
+  updateByPK,
   destroy,
+  destroyByPK,
   findAll,
   findOne,
   findByPk,
