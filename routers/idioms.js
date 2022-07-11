@@ -8,7 +8,8 @@ const {
   query,
   destroy,
   findAll,
-  update,
+  updateByPK,
+  destroyByPK,
 } = require("../database/datasource");
 const { Models } = require("../database/models");
 
@@ -31,7 +32,6 @@ idiomsRouter.get("/", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 
@@ -46,7 +46,6 @@ idiomsRouter.get("/all", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 
@@ -70,7 +69,6 @@ idiomsRouter.get("/one/:id", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 })
 
@@ -86,7 +84,8 @@ idiomsRouter.post("/update/", async(req, res) => {
   }
 
   try {
-    const result = await findByPk(ModelNames.Idiom, id);
+    const result = await findByPk(ModelNames.Idiom, updateId);
+    console.log(result);
 
     if(!result)
     {
@@ -104,13 +103,12 @@ idiomsRouter.post("/update/", async(req, res) => {
         Origin: origin,
       }, id)
 
+      res.status(200).send("Updated entry successfully");
       console.log(`updated entry at ${id}`);
-      res.redirect('/admin');
     } 
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 })
 
@@ -132,13 +130,12 @@ idiomsRouter.post("/delete", async(req, res) => {
     else {
       const temp = await destroyByPK(ModelNames.Idiom, id);
       console.log("deleted entry");
-      res.redirect('/admin/view');
+      res.status(200).send("Entry deleted succesfully");
     }
 
   } catch(err) {
     console.log(err);
     res.status(500).send("An unexpected error has occured.");
-    res.redirect("/admin/error");
   }
 })
 
@@ -161,11 +158,9 @@ idiomsRouter.post("/", async (req, res) => {
       Origin: origin,
     });
     res.send(record);
-    res.redirect('/admin');
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 
