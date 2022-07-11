@@ -60,6 +60,15 @@
     
 }
 
+.randomIdiom{
+  text-align: center;
+}
+
+#randomButton{
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
 .idiomButtons {
     padding:3%;
 }
@@ -92,4 +101,12 @@
 
 #title {
   font-size: x-large;
+}
+
+#date{
+  font-size: xx-large;
+}
+
+.homeFooter{
+  padding-top: 3rem;
 }

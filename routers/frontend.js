@@ -6,8 +6,17 @@ frontendRouter.get("/", (_, res) => {
   res.sendFile(appRoot + "/public/index.html");
 });
 
+
+frontendRouter.get("/random", (_, res) => {
+  res.sendFile(appRoot + "/public/pages/randomIdiom.html");
+});
+
+
+
 frontendRouter.get("/admin", (req, res) => {
   res.sendFile(appRoot + "/public/admin-management/admin-management.html");
+  
+
   // // console.log(req);
   // const code = req.query.code;
 
