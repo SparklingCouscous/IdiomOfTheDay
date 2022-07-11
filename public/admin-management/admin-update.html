@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link type="text/css" rel="styles" id="dark-mode-custom-link">
+    <link type="text/css" rel="styles" id="dark-mode-general-link">
+    <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
+    <style lang="en" type="text/css" id="dark-mode-native-style"></style>
+    <head>
+        <script type="module" src="../js/update.js" async></script>
+        <link rel="stylesheet" href="../styles/admin-management.css">
+        <link rel="stylesheet" href="../styles/styles.css">
+        <title>Update</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <section class="navbar">
+                <a href="/">IDIOM OF THE DAY</a>
+                <a href="/admin">ADMIN</a>
+                <a href="/admin/view">VIEW ALL IDIOMS</a>
+                <a href="/admin/delete">DELETE AN IDIOM</a>
+                <a href="/admin/update">UPDATE AN IDIOM</a>
+                <button class="logout">Logout</button>
+            </section> 
+        </header>
+        <main>
+            <section class="content">
+                <p>Find Idiom by ID to update</p>
+                <input class="id-input" type="number" placeholder="ID" name="searchId" id="searchIdiom">
+                <button id="search">Search for Idiom</button>
+            </section>
+            <section class="content-invisble" id="formSection">
+                <form action="http://localhost:8080/api/idiom/update/" method="POST" id="idiomForm">
+                    <p>ID</p>
+                    <input type="number" placeholder="ID" name="id" id="updateId" disabled required>
+                    <p>Update Idiom</p>
+                    <textarea type="text" placeholder="Idiom" name="idiom" id="updateIdiom" required></textarea>
+                    <p>Update meaning</p>
+                    <textarea type="text" placeholder="Meaning" name="meaning" id="updateMeaning" required></textarea>
+                    <p>Update origin</p>
+                    <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin" required></textarea>
+                    <br>
+                    <button class="submit" type="submit" id="Submit">Update Idiom</button>
+                    </form>
+                </section>
+        </main>
+    </body>
+</html>
