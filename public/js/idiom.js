@@ -1,4 +1,3 @@
-
 function initialIdiom()
 {
    
@@ -13,12 +12,18 @@ function initialIdiom()
         document.getElementById('Origin').innerHTML = data['Origin'];
         
     });
-   
+  
+let idiomCounter = 0;
+
+
 }
 
 initialIdiom();
 
+
 const d = new Date();
 document.getElementById("date").innerHTML = d.toDateString();
+
+
 
 
