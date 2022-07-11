@@ -6,6 +6,9 @@ const idiom = document.getElementById("idiom");
 const meaning = document.getElementById("meaning");
 const origin = document.getElementById("origin");
 const test = document.getElementById("test");
+
+const logoutButton = document.getElementById("logout");
+
 const searchParams = new URL(location).searchParams;
 const cognitoLoginUrl =
   "https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com";
@@ -67,7 +70,7 @@ if (searchParams.get("code") !== null) {
     .catch((error) => console.log("error", error));
 
   // TODO: remove this once button implementation is up
-  logoutButtonClicked = true;
+  //logoutButtonClicked = true;
 } else {
   // generate nonce and PKCE
   const state = await generateNonce();
@@ -79,12 +82,22 @@ if (searchParams.get("code") !== null) {
   window.location = `${cognitoLoginUrl}/login?response_type=code&client_id=${clientId}&state=${state}&code_challenge_method=S256&code_challenge=${codeChallenge}&redirect_uri=${window.location}`;
 }
 
-// TODO: Add button implementation
-if (logoutButtonClicked) {
-  console.log("Implement button");
+async function Logout()
+{
+  console.log("Logging Out");
   // Logout on button click
   const logoutState = await generateNonce();
   window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
+}
+
+logoutButton.addEventListener('click', Logout);
+
+// TODO: Add button implementation
+if (logoutButtonClicked) {
+  // console.log("Implement button");
+  // // Logout on button click
+  // const logoutState = await generateNonce();
+  // window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
 }
 
 function addIdiom() {

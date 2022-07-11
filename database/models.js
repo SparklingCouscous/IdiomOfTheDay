@@ -6,11 +6,11 @@ const ModelNames = {
 
 const Models = {
   Idiom: {
-    // IdiomId: {
-    //   type: DataTypes.INTEGER,
-    //   primaryKey: true,
-    //   autoIncrement: true,
-    // },
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     Idiom: {
       type: DataTypes.STRING,
       allowNull: false,

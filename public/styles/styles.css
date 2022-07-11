@@ -18,7 +18,7 @@
   font-size: 17px;
 }
 
-.navbar .login {
+.navbar .logout {
   float: right;
 }
 
@@ -30,18 +30,19 @@
   width: 150px; /* adjust as needed (as long as it doesn't break the navbar) */
 }
 
-.navbar .login button {
+.navbar button {
   float: right;
   padding: 6px;
-  margin-top: 8px;
   margin-right: 16px;
   background: #ddd;
+  width: 10%;
+  height: 35px;
   font-size: 17px;
   border: none;
   cursor: pointer;
 }
 
-.navbar .login button:hover {
+.navbar .logout button:hover {
   background: #ccc;
 }
 
