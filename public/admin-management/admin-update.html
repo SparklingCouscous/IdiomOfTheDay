@@ -5,10 +5,10 @@
     <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
     <style lang="en" type="text/css" id="dark-mode-native-style"></style>
     <head>
-        <script type="module" src="../js/management.js" async></script>
+        <script type="module" src="../js/update.js" async></script>
         <link rel="stylesheet" href="../styles/admin-management.css">
         <link rel="stylesheet" href="../styles/styles.css">
-        <title>Management</title>
+        <title>Update</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
@@ -24,15 +24,22 @@
         </header>
         <main>
             <section class="content">
-                <form action="http://localhost:8080/api/idiom/" method="POST" id="idiomForm">
-                    <p>Insert new Idiom</p>
-                    <input type="text" placeholder="Idiom" name="idiom" id="idiom">
-                    <p>Insert idiom meaning</p>
-                    <input type="text" placeholder="Meaning" name="meaning" id="meaning">
-                    <p>Insert idiom origin</p>
-                    <input type="text" placeholder="Origin" name="origin" id="origin">
+                <p>Find Idiom by ID to update</p>
+                <input type="text" placeholder="ID" name="searchId" id="searchIdiom">
+                <button id="search">Search for Idiom</button>
+            </section>
+            <section class="content">
+                <form action="http://localhost:8080/api/idiom/update/" method="POST" id="idiomForm">
+                    <p>ID</p>
+                    <input type="text" placeholder="ID" name="id" id="updateId" readonly>
+                    <p>Update Idiom</p>
+                    <input type="text" placeholder="Idiom" name="idiom" id="updateIdiom">
+                    <p>Update meaning</p>
+                    <input type="text" placeholder="Meaning" name="meaning" id="updateMeaning">
+                    <p>Update origin</p>
+                    <input type="text" placeholder="Origin" name="origin" id="updateOrigin">
                     <br>
-                    <button type="submit" id="Submit">Add Idiom</button>
+                    <button type="submit" id="Submit">Update Idiom</button>
                     </form>
                 </section>
         </main>

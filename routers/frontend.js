@@ -36,6 +36,11 @@ frontendRouter.get("/admin/view", (req, res) => {
   res.sendFile(appRoot + "/public/admin-management/admin-view-all.html")
 })
 
+frontendRouter.get("/admin/update", (req, res) => {
+  res.sendFile(appRoot + "/public/admin-management/admin-update.html")
+})
+
+
 frontendRouter.get("/admin/delete", (req, res) => {
   res.sendFile(appRoot + "/public/admin-management/admin-delete.html")
 })

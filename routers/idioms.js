@@ -8,6 +8,7 @@ const {
   query,
   destroy,
   findAll,
+  update,
 } = require("../database/datasource");
 const { Models } = require("../database/models");
 
@@ -48,9 +49,10 @@ idiomsRouter.get("/all", async (req, res) => {
 });
 
 //Endpoint to get a specific idiom
-idiomsRouter.get("/:id", async (req, res) => {
+idiomsRouter.get("/one/:id", async (req, res) => {
   const id = req.params.id;
   
+  console.log(id);
   try{
     const result = await findByPk(ModelNames.Idiom, id);
 
@@ -65,6 +67,44 @@ idiomsRouter.get("/:id", async (req, res) => {
   } catch (err) {
     //TODO: Logging/Tracing?
     console.error(err);
+    res.status(500).send("An unexpected error has occurred.");
+  }
+})
+
+idiomsRouter.post("/update/", async(req, res) => {
+  const { id, idiom, meaning, origin } = req.body;
+
+  console.log(req.body);
+
+  if (!id || !idiom || !meaning || !origin) {
+    res.status(400).send("Invalid parameters.");
+    return;
+  }
+
+  try {
+    const result = await findByPk(ModelNames.Idiom, id);
+
+    if(!result)
+    {
+      res
+        .status(404)
+        .send("An idiom with the specified id could not be found.");
+        console.log(id);
+      return;
+    }
+    else {
+      const temp = await update(ModelNames.Idiom, {
+        id: id,
+        Idiom: idiom,
+        Meaning: meaning,
+        Origin: origin,
+      }, id)
+
+      console.log(`updated entry at ${id}`);
+      res.redirect('/admin');
+    } 
+  } catch (err) {
+    //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
   }
 })

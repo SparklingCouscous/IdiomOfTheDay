@@ -60,7 +60,8 @@ const create = async (modelName, data) => {
 
 const update = async (modelName, data, options = {}) => {
   const model = getModelDefinitions()[modelName];
-  return await model.update(data, options);
+  return await model.update(data, 
+    {where: {id: options}});
 }
 
 //Delete entry by ID
