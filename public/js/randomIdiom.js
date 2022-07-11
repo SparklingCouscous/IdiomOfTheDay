@@ -1,4 +1,4 @@
-function initialIdiom()
+function randomIdiom()
 {
    
     fetch('http://localhost:8080/api/idiom')
@@ -12,20 +12,10 @@ function initialIdiom()
         document.getElementById('Origin').innerHTML = data['Origin'];
         
     });
-  
-let idiomCounter = 0;
 
 
 }
 
 
-
-initialIdiom();
-
-
-const d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-
-
-
+document.getElementById("randomButton").addEventListener("click", randomIdiom);
 
