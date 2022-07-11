@@ -41,3 +41,4 @@ frontendRouter.get("/styles/*", (req, res) => {
 });
 
 module.exports = frontendRouter;
+
