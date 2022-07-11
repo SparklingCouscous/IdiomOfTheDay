@@ -67,7 +67,8 @@ const update = async (modelName, data, options = {}) => {
 const updateByPK = async (modelName, data, options = {}) => {
   const model = getModelDefinitions()[modelName];
   return await model.update(data, 
-    {where: {id: options}});
+    {where: {id: options}
+  });
 }
 
 

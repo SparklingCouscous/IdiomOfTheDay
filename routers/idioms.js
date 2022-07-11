@@ -84,7 +84,7 @@ idiomsRouter.post("/update/", async(req, res) => {
   }
 
   try {
-    const result = await findByPk(ModelNames.Idiom, updateId);
+    const result = await findByPk(ModelNames.Idiom, id);
     console.log(result);
 
     if(!result)
