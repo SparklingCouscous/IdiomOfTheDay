@@ -3,6 +3,8 @@ let id;
 const searchButton = document.getElementById("search");
 const searchInput = document.getElementById("searchIdiom");
 
+const formSection = document.getElementById("formSection")
+
 const updateId = document.getElementById("updateId")
 const updateIdiom = document.getElementById("updateIdiom");
 const updateMeaning = document.getElementById("updateMeaning");
@@ -13,6 +15,11 @@ searchButton.addEventListener('click', getId);
 function getId()
 {
     id = searchInput.value;
+    if(id !== null)
+    {
+        formSection.classList.remove("content-invisble");
+        formSection.classList.add("content");
+    }
     getIdiom();
 }
 

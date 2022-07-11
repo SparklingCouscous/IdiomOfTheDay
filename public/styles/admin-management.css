@@ -4,16 +4,35 @@
     margin: 50px;
 }
 
-.content input {
-    height: 100px;
-    width: 450px;
+.update-label {
+    display: inline-block;
+    padding-right: 30px;
 }
 
-main button {
+.content-invisble {
+    display: none;
+}
+
+.content input {
+    height: auto;
+    width: 600px;
+}
+
+.content textarea {
+    width: 600px;
+    height: 100px;
+}
+
+.content .id-input {
+    height: 25px;
+    width: 400px;
+}
+
+.submit {
     justify-content: center;
     margin-top: 5%;
     padding: 5%;
-    height: 150px;
+    height: 100px;
     width: 450px;
 }
 

@@ -132,7 +132,7 @@ idiomsRouter.post("/delete", async(req, res) => {
     else {
       const temp = await destroy(ModelNames.Idiom, id);
       console.log("deleted entry");
-      res.redirect('/admin');
+      res.redirect('/admin/view');
     }
 
   } catch(err) {
