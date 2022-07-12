@@ -8,7 +8,8 @@ const {
   query,
   destroy,
   findAll,
-  update,
+  updateByPK,
+  destroyByPK,
 } = require("../database/datasource");
 const { Models } = require("../database/models");
 
@@ -31,7 +32,6 @@ idiomsRouter.get("/", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 
@@ -46,7 +46,6 @@ idiomsRouter.get("/all", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 
@@ -54,7 +53,6 @@ idiomsRouter.get("/all", async (req, res) => {
 idiomsRouter.get("/one/:id", async (req, res) => {
   const id = req.params.id;
   
-  console.log(id);
   try{
     const result = await findByPk(ModelNames.Idiom, id);
 
@@ -70,15 +68,12 @@ idiomsRouter.get("/one/:id", async (req, res) => {
     //TODO: Logging/Tracing?
     console.error(err);
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 })
 
 //Endpoint to update an idiom
 idiomsRouter.post("/update/", async(req, res) => {
   const { id, idiom, meaning, origin } = req.body;
-
-  console.log(req.body);
 
   if (!id || !idiom || !meaning || !origin) {
     res.status(400).send("Invalid parameters.");
@@ -93,7 +88,6 @@ idiomsRouter.post("/update/", async(req, res) => {
       res
         .status(404)
         .send("An idiom with the specified id could not be found.");
-        console.log(id);
       return;
     }
     else {
@@ -104,13 +98,12 @@ idiomsRouter.post("/update/", async(req, res) => {
         Origin: origin,
       }, id)
 
+      res.status(200).send("Updated entry successfully");
       console.log(`updated entry at ${id}`);
-      res.redirect('/admin');
     } 
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 })
 
@@ -126,19 +119,17 @@ idiomsRouter.post("/delete", async(req, res) => {
       res
         .status(404)
         .send("An idiom with the specified id could not be found.");
-        console.log(id);
       return;
     }
     else {
       const temp = await destroyByPK(ModelNames.Idiom, id);
       console.log("deleted entry");
-      res.redirect('/admin/view');
+      res.status(200).send("Entry deleted succesfully");
     }
 
   } catch(err) {
     console.log(err);
     res.status(500).send("An unexpected error has occured.");
-    res.redirect("/admin/error");
   }
 })
 
@@ -160,12 +151,10 @@ idiomsRouter.post("/", async (req, res) => {
       Meaning: meaning,
       Origin: origin,
     });
-    res.send(record);
-    res.redirect('/admin');
+    res.status(200).send("Idiom added successfully");
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
-    res.redirect("/admin/error");
   }
 });
 

@@ -68,9 +68,6 @@ if (searchParams.get("code") !== null) {
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
-
-  // TODO: remove this once button implementation is up
-  //logoutButtonClicked = true;
 } else {
   // generate nonce and PKCE
   const state = await generateNonce();
@@ -92,14 +89,6 @@ async function Logout()
 
 logoutButton.addEventListener('click', Logout);
 
-// TODO: Add button implementation
-if (logoutButtonClicked) {
-  // console.log("Implement button");
-  // // Logout on button click
-  // const logoutState = await generateNonce();
-  // window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
-}
-
 function addIdiom() {
   let addedIdiom = idiom.value;
   let addedMeaning = meaning.value;
@@ -108,8 +97,4 @@ function addIdiom() {
   newIdiom.idiom = addedIdiom;
   newIdiom.meanig = addedMeaning;
   newIdiom.origin = addedOrigin;
-
-  console.log(newIdiom);
-
-  // event.preventDefault();
 }
