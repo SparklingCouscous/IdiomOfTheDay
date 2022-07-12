@@ -53,7 +53,6 @@ idiomsRouter.get("/all", async (req, res) => {
 idiomsRouter.get("/one/:id", async (req, res) => {
   const id = req.params.id;
   
-  console.log(id);
   try{
     const result = await findByPk(ModelNames.Idiom, id);
 
@@ -76,8 +75,6 @@ idiomsRouter.get("/one/:id", async (req, res) => {
 idiomsRouter.post("/update/", async(req, res) => {
   const { id, idiom, meaning, origin } = req.body;
 
-  console.log(req.body);
-
   if (!id || !idiom || !meaning || !origin) {
     res.status(400).send("Invalid parameters.");
     return;
@@ -85,14 +82,12 @@ idiomsRouter.post("/update/", async(req, res) => {
 
   try {
     const result = await findByPk(ModelNames.Idiom, id);
-    console.log(result);
 
     if(!result)
     {
       res
         .status(404)
         .send("An idiom with the specified id could not be found.");
-        console.log(id);
       return;
     }
     else {
@@ -124,7 +119,6 @@ idiomsRouter.post("/delete", async(req, res) => {
       res
         .status(404)
         .send("An idiom with the specified id could not be found.");
-        console.log(id);
       return;
     }
     else {
