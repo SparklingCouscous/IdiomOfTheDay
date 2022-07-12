@@ -13,7 +13,6 @@ const getModelDefinitions = () => {
     modelDefinitions = {};
     Object.entries(Models).forEach(([name, model]) => {
       modelDefinitions[name] = sequelize.define(name, model, {timestamps:false});
-      //modelDefinitions[name].removeAttribute('id');
     });
   }
 
