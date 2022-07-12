@@ -73,7 +73,7 @@ idiomsRouter.get("/one/:id", async (req, res) => {
 })
 
 //Endpoint to update an idiom
-idiomsRouter.post("/update/", authMiddleware, async(req, res) => {
+idiomsRouter.post("/update", authMiddleware, async(req, res) => {
   const { id, idiom, meaning, origin } = req.body;
 
   if (!id || !idiom || !meaning || !origin) {
@@ -92,7 +92,7 @@ idiomsRouter.post("/update/", authMiddleware, async(req, res) => {
       return;
     }
     else {
-      const temp = await updateByPK(ModelNames.Idiom, {
+      await updateByPK(ModelNames.Idiom, {
         id: id,
         Idiom: idiom,
         Meaning: meaning,
@@ -100,7 +100,6 @@ idiomsRouter.post("/update/", authMiddleware, async(req, res) => {
       }, id)
 
       res.status(200).send("Updated entry successfully");
-      console.log(`updated entry at ${id}`);
     }
   } catch (err) {
     //TODO: Logging/Tracing?
@@ -123,8 +122,7 @@ idiomsRouter.post("/delete", authMiddleware, async(req, res) => {
       return;
     }
     else {
-      const temp = await destroyByPK(ModelNames.Idiom, id);
-      console.log("deleted entry");
+      await destroyByPK(ModelNames.Idiom, id);
       res.status(200).send("Entry deleted succesfully");
     }
 

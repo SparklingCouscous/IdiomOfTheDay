@@ -5,12 +5,12 @@
     <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
     <style lang="en" type="text/css" id="dark-mode-native-style"></style>
     <head>
-        <script type="module" src="../js/management.js" async></script>
-        <script type="module" src="../js/update.js" async></script>
-        <script type="module" src="../js/view.js" async></script>
-        <script type="module" src="../js/tabs.js" async></script>
-        <link rel="stylesheet" href="../styles/admin-management.css">
-        <link rel="stylesheet" href="../styles/styles.css">
+        <script type="module" src="/js/management.js" async></script>
+        <script type="module" src="/js/update.js" async></script>
+        <script type="module" src="/js/view.js" async></script>
+        <script type="module" src="/js/tabs.js" async></script>
+        <link rel="stylesheet" href="/styles/admin-management.css">
+        <link rel="stylesheet" href="/styles/styles.css">
         <title>Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,15 +36,15 @@
                     <p>Insert idiom origin</p>
                     <textarea type="text" placeholder="Origin" name="origin" id="origin" autocomplete="off" required></textarea>
                     <br>
-                    <button class="submit" id="Submit">Add Idiom</button>
+                    <button class="submit" id="submitCreate">Add Idiom</button>
                 </section>
 
                 <section class="delete" id="deleteTab">
                     <section class="content">
                         <p>Delete Idiom By its ID</p>
-                        <input type="number" placeholder="ID" name="id" id="idiom" required>
+                        <input type="number" placeholder="ID" name="id" id="deleteId" required>
                         <br>
-                        <button class="submit" id="Submit">Delete Idiom</button>
+                        <button class="submit" id="submitDelete">Delete Idiom</button>
                     </section>
                 </section>
 
@@ -80,8 +80,8 @@
                         <p>Update origin</p>
                         <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin"></textarea>
                         <br>
-                        <button class="submit" id="Submit">Update Idiom</button>
-                        </section>
+                        <button class="submit" id="submitUpdate">Update Idiom</button>
+                    </section>
                 </section>
             </section>
         </main>

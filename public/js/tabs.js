@@ -1,4 +1,8 @@
 
+const submitCreate = document.getElementById('submitCreate');
+const submitUpdate = document.getElementById('submitUpdate');
+const submitDelete = document.getElementById('submitDelete');
+
 const createTab = document.getElementById("createTab");
 const deleteTab = document.getElementById("deleteTab");
 const viewTab = document.getElementById("viewTab");
@@ -65,4 +69,134 @@ function openUpdate()
 
 updateButton.addEventListener('click', openUpdate);
 
+const onSubmitCreate = () => {
+    const idiom = document.getElementById("idiom");
+    const meaning = document.getElementById("meaning");
+    const origin = document.getElementById("origin");
 
+    let addedIdiom = idiom.value;
+    let addedMeaning = meaning.value;
+    let addedOrigin = origin.value;
+
+    const newIdiom = {};
+
+    newIdiom.idiom = addedIdiom;
+    newIdiom.meaning = addedMeaning;
+    newIdiom.origin = addedOrigin;
+
+    fetch('http://localhost:8080/api/idiom', {
+      method: 'POST',
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newIdiom),
+    })
+    .then(response => {
+        if (response.status === 401) {
+            alert('Unauthorized. Please log in again.');
+            localStorage.clear('access_token');
+            return;
+        }
+
+        if (response.status !== 200) {
+            throw new Error();
+        }
+
+        idiom.value = "";
+        meaning.value = "";
+        origin.value = "";
+        alert('Idiom successfully added to the database.');
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Failed to add idiom to the database.');
+    });
+}
+
+const onSubmitUpdate = () => {
+    const idField = document.getElementById('updateId');
+    const idiomField = document.getElementById('updateIdiom');
+    const meaningField = document.getElementById('updateMeaning');
+    const originField = document.getElementById('updateOrigin');
+
+    const id = idField.value;
+    const idiom = idiomField.value;
+    const meaning = meaningField.value;
+    const origin = originField.value;
+
+    const updatedIdiom = {
+        id,
+        idiom,
+        meaning,
+        origin,
+    }
+
+    fetch('http://localhost:8080/api/idiom/update', {
+      method: 'POST',
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedIdiom),
+    })
+    .then(response => {
+        if (response.status === 401) {
+            alert('Unauthorized. Please log in again.');
+            localStorage.clear('access_token');
+            return;
+        }
+
+        if (response.status !== 200) {
+            throw new Error();
+        }
+
+        idField.value = "";
+        idiomField.value = "";
+        meaningField.value = "";
+        originField.value = "";
+        alert('Idiom successfully updated.');
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Failed to update idiom.');
+    });
+}
+
+const onSubmitDelete = () => {
+    const idField = document.getElementById('deleteId');
+    const id = idField.value;
+
+    fetch('http://localhost:8080/api/idiom/delete', {
+      method: 'POST',
+      headers: {
+        authorization: localStorage.getItem('access_token'),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id,
+      }),
+    })
+    .then(response => {
+        if (response.status === 401) {
+            alert('Unauthorized. Please log in again.');
+            localStorage.clear('access_token');
+            return;
+        }
+
+        if (response.status !== 200) {
+            throw new Error();
+        }
+
+        idField.value = "";
+        alert('Idiom successfully deleted.');
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Failed to delete idiom from the database.');
+    });
+}
+
+submitCreate.addEventListener('click', onSubmitCreate);
+submitUpdate.addEventListener('click', onSubmitUpdate);
+submitDelete.addEventListener('click', onSubmitDelete);

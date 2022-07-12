@@ -1,7 +1,6 @@
 var newIdiom = { idiom: "", meanig: "", origin: "", rating: "" };
 // var axios = require("axios");
 const form = document.getElementById("idiomForm");
-const submitButtom = document.getElementById("Submit");
 const idiom = document.getElementById("idiom");
 const meaning = document.getElementById("meaning");
 const origin = document.getElementById("origin");
@@ -16,7 +15,6 @@ const clientId = "20e1ukc740tq9ced1ikk676119";
 
 let logoutButtonClicked = false;
 
-submitButtom.addEventListener("click", addIdiom);
 logoutButton.addEventListener('click', Logout);
 
 const sha256 = async (str) => {
@@ -87,31 +85,4 @@ async function Logout()
   const logoutState = await generateNonce();
   localStorage.clear('access_token');
   window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
-}
-
-function addIdiom() {
-  let addedIdiom = idiom.value;
-  let addedMeaning = meaning.value;
-  let addedOrigin = origin.value;
-
-  newIdiom.idiom = addedIdiom;
-  newIdiom.meaning = addedMeaning;
-  newIdiom.origin = addedOrigin;
-
-  fetch('http://localhost:8080/api/idiom', {
-    method: 'POST',
-    headers: {
-      authorization: localStorage.getItem('access_token'),
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newIdiom),
-  })
-  .then(response => response.json())
-  .then(_ => {
-    idiom.value = "";
-    meaning.value = "";
-    origin.value = "";
-    alert('Idiom created successfully!');
-  })
-  .catch(err => console.log(err));
 }
