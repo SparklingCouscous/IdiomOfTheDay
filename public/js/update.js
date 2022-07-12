@@ -15,10 +15,6 @@ searchButton.addEventListener('click', getId);
 function getId()
 {
     id = searchInput.value;
-    if(id !== null)
-    {
-        
-    }
     getIdiom();
 }
 
