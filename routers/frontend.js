@@ -2,6 +2,24 @@ const express = require("express");
 const frontendRouter = express.Router();
 // var axios = require("axios");
 
+
+
+
+// set up rate limiter: maximum of five requests per minute
+const rateLimit = require('express-rate-limit');
+const app = express();
+
+const limiter = rateLimit({
+  windowMs: 1*60*1000, // 1 minute
+  max: 60
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
+
+frontendRouter.use(limiter);
+
+
 frontendRouter.get("/", (_, res) => {
   res.sendFile(appRoot + "/public/index.html");
 });
