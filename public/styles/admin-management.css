@@ -46,3 +46,35 @@ table {
 table, th, td {
     border: 1px solid;
 }
+
+.create {
+    display: initial;
+}
+
+.update {
+    display: initial;
+}
+
+.delete {
+    display: initial;
+}
+
+.view {
+    display: initial;
+}
+
+.create-invisible {
+    display: none;
+}
+
+.update-invisible {
+    display: none;
+}
+
+.delete-invisible {
+    display: none;
+}
+
+.view-invisible {
+    display: none;
+}

@@ -5,15 +5,24 @@
 
 .navbar {
   overflow: hidden;
-  
+  display: flex;
+}
+
+.navbar .tab {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
 }
 
 .navbar a {
   float: left;
   display: block;
   color: black;
+  padding: 12px, 16px;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
@@ -34,6 +43,7 @@
   float: right;
   padding: 6px;
   margin-right: 16px;
+  margin-left: 16px;
   background: #ddd;
   width: 10%;
   height: 35px;

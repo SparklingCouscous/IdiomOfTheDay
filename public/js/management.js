@@ -68,9 +68,6 @@ if (searchParams.get("code") !== null || !!localStorage.getItem('access_token'))
     .then((response) => response.json())
     .then((result) => localStorage.setItem('access_token', result.access_token))
     .catch((error) => console.log("error", error));
-
-  // TODO: remove this once button implementation is up
-  //logoutButtonClicked = true;
 } else {
   // generate nonce and PKCE
   const state = await generateNonce();
@@ -92,14 +89,6 @@ async function Logout()
 }
 
 logoutButton.addEventListener('click', Logout);
-
-// TODO: Add button implementation
-if (logoutButtonClicked) {
-  // console.log("Implement button");
-  // // Logout on button click
-  // const logoutState = await generateNonce();
-  // window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
-}
 
 function addIdiom() {
   let addedIdiom = idiom.value;
@@ -126,6 +115,4 @@ function addIdiom() {
     alert('Idiom created successfully!');
   })
   .catch(err => console.log(err));
-
-  // event.preventDefault();
 }

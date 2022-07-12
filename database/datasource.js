@@ -13,7 +13,6 @@ const getModelDefinitions = () => {
     modelDefinitions = {};
     Object.entries(Models).forEach(([name, model]) => {
       modelDefinitions[name] = sequelize.define(name, model, {timestamps:false});
-      //modelDefinitions[name].removeAttribute('id');
     });
   }
 
@@ -66,8 +65,9 @@ const update = async (modelName, data, options = {}) => {
 //Update by id
 const updateByPK = async (modelName, data, options = {}) => {
   const model = getModelDefinitions()[modelName];
-  return await model.update(data,
-    {where: {id: options}});
+  return await model.update(data, {
+    where: {id: options}
+  });
 }
 
 
