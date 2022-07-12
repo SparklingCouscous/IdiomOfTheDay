@@ -66,7 +66,6 @@ if (searchParams.get("code") !== null) {
     }
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
 } else {
   // generate nonce and PKCE
