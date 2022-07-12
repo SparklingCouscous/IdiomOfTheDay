@@ -7,12 +7,14 @@ const database = require("./database/datasource");
 const idiomsRouter = require("./routers/idioms");
 const frontendRouter = require("./routers/frontend");
 const bodyParser = require("body-parser");
+const helmet = require('helmet');
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
