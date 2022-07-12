@@ -1,7 +1,8 @@
+
 function initialIdiom()
 {
    
-    fetch('http://localhost:8080/api/idiom')
+    fetch( "/api/idiom")
     .then((response) => {
         return response.json();
     })
@@ -11,12 +12,14 @@ function initialIdiom()
         document.getElementById('Description').innerHTML = data['Meaning'];
         document.getElementById('Origin').innerHTML = data['Origin'];
         
-    });
+    });  };
+
+    
   
 let idiomCounter = 0;
 
 
-}
+
 
 
 

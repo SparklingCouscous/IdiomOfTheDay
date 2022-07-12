@@ -25,6 +25,13 @@ frontendRouter.get("/", (_, res) => {
 });
 
 
+frontendRouter.get("/config" , (_,res) =>{
+  res.sendFile(appRoot + "/public/config.json")
+});
+
+
+
+
 frontendRouter.get("/random", (_, res) => {
   res.sendFile(appRoot + "/public/pages/randomIdiom.html");
 });
