@@ -1,7 +1,6 @@
 var newIdiom = { idiom: "", meanig: "", origin: "", rating: "" };
 // var axios = require("axios");
 const form = document.getElementById("idiomForm");
-const submitButtom = document.getElementById("Submit");
 const idiom = document.getElementById("idiom");
 const meaning = document.getElementById("meaning");
 const origin = document.getElementById("origin");
@@ -16,7 +15,7 @@ const clientId = "20e1ukc740tq9ced1ikk676119";
 
 let logoutButtonClicked = false;
 
-submitButtom.addEventListener("click", addIdiom);
+logoutButton.addEventListener('click', Logout);
 
 const sha256 = async (str) => {
   return await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -38,7 +37,7 @@ const base64URLEncode = (string) => {
     .replace(/=+$/, "");
 };
 
-if (searchParams.get("code") !== null) {
+if (searchParams.get("code") !== null || !!localStorage.getItem('access_token')) {
   // logged in
   // remove the query parameters
   window.history.replaceState({}, document.title, "admin");
@@ -55,7 +54,7 @@ if (searchParams.get("code") !== null) {
   await fetch(
     `${cognitoLoginUrl}/oauth2/token?grant_type=authorization_code&code=${searchParams.get(
       "code"
-    )}&client_id=${clientId}&redirect_uri=http://localhost:8080/admin&code_verifier=${codeVerifier}`,
+    )}&client_id=${clientId}&redirect_uri=${window.location.protocol}//${window.location.host}/admin&code_verifier=${codeVerifier}`,
     {
       method: "POST",
       headers: new Headers({
@@ -65,7 +64,8 @@ if (searchParams.get("code") !== null) {
       redirect: "follow",
     }
   )
-    .then((response) => response.text())
+    .then((response) => response.json())
+    .then((result) => localStorage.setItem('access_token', result.access_token))
     .catch((error) => console.log("error", error));
 } else {
   // generate nonce and PKCE
@@ -83,17 +83,6 @@ async function Logout()
   console.log("Logging Out");
   // Logout on button click
   const logoutState = await generateNonce();
-  window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
-}
-
-logoutButton.addEventListener('click', Logout);
-
-function addIdiom() {
-  let addedIdiom = idiom.value;
-  let addedMeaning = meaning.value;
-  let addedOrigin = origin.value;
-
-  newIdiom.idiom = addedIdiom;
-  newIdiom.meanig = addedMeaning;
-  newIdiom.origin = addedOrigin;
+  localStorage.clear('access_token');
+  window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=${window.location.protocol}//${window.location.host}/`;
 }
