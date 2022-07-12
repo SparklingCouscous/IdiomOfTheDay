@@ -151,7 +151,6 @@ idiomsRouter.post("/", async (req, res) => {
       Meaning: meaning,
       Origin: origin,
     });
-    res.send(record);
     res.status(200).send("Idiom added successfully");
   } catch (err) {
     //TODO: Logging/Tracing?
