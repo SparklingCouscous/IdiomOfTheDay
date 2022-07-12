@@ -68,9 +68,6 @@ if (searchParams.get("code") !== null) {
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));
-
-  // TODO: remove this once button implementation is up
-  //logoutButtonClicked = true;
 } else {
   // generate nonce and PKCE
   const state = await generateNonce();
