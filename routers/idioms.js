@@ -30,8 +30,6 @@ idiomsRouter.get("/", async (req, res) => {
 
     res.send(result[0]);
   } catch (err) {
-    //TODO: Logging/Tracing?
-    console.error(err);
     res.status(500).send("An unexpected error has occurred.");
   }
 });
@@ -44,8 +42,6 @@ idiomsRouter.get("/all", async (req, res) => {
 
     res.send(result);
   } catch (err) {
-    //TODO: Logging/Tracing?
-    console.error(err);
     res.status(500).send("An unexpected error has occurred.");
   }
 });
@@ -66,8 +62,6 @@ idiomsRouter.get("/one/:id", async (req, res) => {
 
       res.send(result);
   } catch (err) {
-    //TODO: Logging/Tracing?
-    console.error(err);
     res.status(500).send("An unexpected error has occurred.");
   }
 })
@@ -102,7 +96,6 @@ idiomsRouter.post("/update", authMiddleware, async(req, res) => {
       res.status(200).send("Updated entry successfully");
     }
   } catch (err) {
-    //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
   }
 })
@@ -127,15 +120,11 @@ idiomsRouter.post("/delete", authMiddleware, async(req, res) => {
     }
 
   } catch(err) {
-    console.log(err);
     res.status(500).send("An unexpected error has occured.");
   }
 })
 
-/*
- * Endpoint to add new idioms to the database
- * TODO: Security.
- */
+//Endpoint to add idiom to database
 idiomsRouter.post("/", authMiddleware, async (req, res) => {
   const { idiom, meaning, origin } = req.body;
 
@@ -152,7 +141,6 @@ idiomsRouter.post("/", authMiddleware, async (req, res) => {
     });
     res.status(200).send("Idiom added successfully");
   } catch (err) {
-    //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
   }
 });
