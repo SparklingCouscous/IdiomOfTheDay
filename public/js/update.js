@@ -17,8 +17,7 @@ function getId()
     id = searchInput.value;
     if(id !== null)
     {
-        formSection.classList.remove("content-invisble");
-        formSection.classList.add("content");
+        
     }
     getIdiom();
 }
@@ -34,5 +33,8 @@ function getIdiom()
         updateIdiom.value = data["Idiom"];
         updateMeaning.value = data["Meaning"];
         updateOrigin.value = data["Origin"];
+
+        formSection.classList.remove("content-invisble");
+        formSection.classList.add("content");
     });
 }

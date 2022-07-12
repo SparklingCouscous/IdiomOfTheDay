@@ -158,6 +158,7 @@ idiomsRouter.post("/", async (req, res) => {
       Origin: origin,
     });
     res.send(record);
+    res.status(200).send("Idiom added successfully");
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
