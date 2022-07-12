@@ -5,12 +5,12 @@
     <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
     <style lang="en" type="text/css" id="dark-mode-native-style"></style>
     <head>
-        <script type="module" src="../js/management.js" async></script>
-        <script type="module" src="../js/update.js" async></script>
-        <script type="module" src="../js/view.js" async></script>
-        <script type="module" src="../js/tabs.js" async></script>
-        <link rel="stylesheet" href="../styles/admin-management.css">
-        <link rel="stylesheet" href="../styles/styles.css">
+        <script type="module" src="/js/management.js" async></script>
+        <script type="module" src="/js/update.js" async></script>
+        <script type="module" src="/js/view.js" async></script>
+        <script type="module" src="/js/tabs.js" async></script>
+        <link rel="stylesheet" href="/styles/admin-management.css">
+        <link rel="stylesheet" href="/styles/styles.css">
         <title>Management</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,32 +24,28 @@
                 <button class="tab" id="deleteButton">Delete Idiom</button>
                 <button class="tab" id="updateButton">Update Idiom</button>
                 <button class="logout" id="logout">Logout</button>
-            </section> 
+            </section>
         </header>
         <main>
             <section class="content">
                 <section class="createTab" id="createTab">
-                    <form action="http://localhost:8080/api/idiom/" method="POST" id="idiomForm">
-                        <p>Insert new Idiom</p>
-                        <textarea type="text" placeholder="Idiom" name="idiom" id="idiom" autocomplete="off" required></textarea>
-                        <p>Insert idiom meaning</p>
-                        <textarea type="text" placeholder="Meaning" name="meaning" id="meaning" autocomplete="off" required></textarea>
-                        <p>Insert idiom origin</p>
-                        <textarea type="text" placeholder="Origin" name="origin" id="origin" autocomplete="off" required></textarea>
-                        <br>
-                        <button class="submit" type="submit" id="Submit">Add Idiom</button>
-                    </form>
+                    <p>Insert new Idiom</p>
+                    <textarea type="text" placeholder="Idiom" name="idiom" id="idiom" autocomplete="off" required></textarea>
+                    <p>Insert idiom meaning</p>
+                    <textarea type="text" placeholder="Meaning" name="meaning" id="meaning" autocomplete="off" required></textarea>
+                    <p>Insert idiom origin</p>
+                    <textarea type="text" placeholder="Origin" name="origin" id="origin" autocomplete="off" required></textarea>
+                    <br>
+                    <button class="submit" id="submitCreate">Add Idiom</button>
                 </section>
 
                 <section class="delete" id="deleteTab">
                     <section class="content">
-                        <form action="http://localhost:8080/api/idiom/delete" method="POST" id="deleteForm">
-                            <p>Delete Idiom By its ID</p>
-                            <input type="number" placeholder="ID" name="id" id="idiom" required>
-                            <br>
-                            <button class="submit" type="submit" id="Submit">Delete Idiom</button>
-                            </form>
-                        </section>
+                        <p>Delete Idiom By its ID</p>
+                        <input type="number" placeholder="ID" name="id" id="deleteId" required>
+                        <br>
+                        <button class="submit" id="submitDelete">Delete Idiom</button>
+                    </section>
                 </section>
 
                 <section class="view" id="viewTab">
@@ -62,7 +58,7 @@
                                 <th>Origin</th>
                             </tr>
                             <tbody id="idiomTable">
-        
+
                             </tbody>
                         </table>
                     </section>
@@ -75,19 +71,17 @@
                         <button id="search">Search for Idiom</button>
                     </section>
                     <section class="content-invisble" id="formSection">
-                        <form action="http://localhost:8080/api/idiom/update/" method="POST" id="idiomForm">
-                            <p>ID</p>
-                            <input type="number" placeholder="ID" name="id" id="updateId" readonly>
-                            <p>Update Idiom</p>
-                            <textarea type="text" placeholder="Idiom" name="idiom" id="updateIdiom"></textarea>
-                            <p>Update meaning</p>
-                            <textarea type="text" placeholder="Meaning" name="meaning" id="updateMeaning"></textarea>
-                            <p>Update origin</p>
-                            <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin"></textarea>
-                            <br>
-                            <button class="submit" type="submit" id="Submit">Update Idiom</button>
-                            </form>
-                        </section>
+                        <p>ID</p>
+                        <input type="number" placeholder="ID" name="id" id="updateId" readonly>
+                        <p>Update Idiom</p>
+                        <textarea type="text" placeholder="Idiom" name="idiom" id="updateIdiom"></textarea>
+                        <p>Update meaning</p>
+                        <textarea type="text" placeholder="Meaning" name="meaning" id="updateMeaning"></textarea>
+                        <p>Update origin</p>
+                        <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin"></textarea>
+                        <br>
+                        <button class="submit" id="submitUpdate">Update Idiom</button>
+                    </section>
                 </section>
             </section>
         </main>

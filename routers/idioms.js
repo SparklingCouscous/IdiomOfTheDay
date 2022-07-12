@@ -1,21 +1,22 @@
 const express = require("express");
 const idiomsRouter = express.Router();
+const authMiddleware = require('../middleware/auth');
 
 const {
   ModelNames,
   create,
   findByPk,
   query,
-  destroy,
+  destroyByPK,
   findAll,
   updateByPK,
-  destroyByPK,
 } = require("../database/datasource");
+
 const { Models } = require("../database/models");
 
 //Endpoint to return a random idiom
 idiomsRouter.get("/", async (req, res) => {
-  
+
 
   try {
     const { result } = await query(
@@ -37,7 +38,7 @@ idiomsRouter.get("/", async (req, res) => {
 
 //Endpoint to get all idioms
 idiomsRouter.get("/all", async (req, res) => {
-  
+
   try {
     const result = await findAll(ModelNames.Idiom);
 
@@ -52,7 +53,7 @@ idiomsRouter.get("/all", async (req, res) => {
 //Endpoint to get a specific idiom
 idiomsRouter.get("/one/:id", async (req, res) => {
   const id = req.params.id;
-  
+
   try{
     const result = await findByPk(ModelNames.Idiom, id);
 
@@ -72,7 +73,7 @@ idiomsRouter.get("/one/:id", async (req, res) => {
 })
 
 //Endpoint to update an idiom
-idiomsRouter.post("/update/", async(req, res) => {
+idiomsRouter.post("/update", authMiddleware, async(req, res) => {
   const { id, idiom, meaning, origin } = req.body;
 
   if (!id || !idiom || !meaning || !origin) {
@@ -91,7 +92,7 @@ idiomsRouter.post("/update/", async(req, res) => {
       return;
     }
     else {
-      const temp = await updateByPK(ModelNames.Idiom, {
+      await updateByPK(ModelNames.Idiom, {
         id: id,
         Idiom: idiom,
         Meaning: meaning,
@@ -99,8 +100,7 @@ idiomsRouter.post("/update/", async(req, res) => {
       }, id)
 
       res.status(200).send("Updated entry successfully");
-      console.log(`updated entry at ${id}`);
-    } 
+    }
   } catch (err) {
     //TODO: Logging/Tracing?
     res.status(500).send("An unexpected error has occurred.");
@@ -108,7 +108,7 @@ idiomsRouter.post("/update/", async(req, res) => {
 })
 
 //Endpoint to delete from the database by id
-idiomsRouter.post("/delete", async(req, res) => {
+idiomsRouter.post("/delete", authMiddleware, async(req, res) => {
   const id = req.body.id;
 
   try {
@@ -122,8 +122,7 @@ idiomsRouter.post("/delete", async(req, res) => {
       return;
     }
     else {
-      const temp = await destroyByPK(ModelNames.Idiom, id);
-      console.log("deleted entry");
+      await destroyByPK(ModelNames.Idiom, id);
       res.status(200).send("Entry deleted succesfully");
     }
 
@@ -137,7 +136,7 @@ idiomsRouter.post("/delete", async(req, res) => {
  * Endpoint to add new idioms to the database
  * TODO: Security.
  */
-idiomsRouter.post("/", async (req, res) => {
+idiomsRouter.post("/", authMiddleware, async (req, res) => {
   const { idiom, meaning, origin } = req.body;
 
   if (!idiom || !meaning || !origin) {
