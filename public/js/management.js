@@ -17,6 +17,7 @@ const clientId = "20e1ukc740tq9ced1ikk676119";
 let logoutButtonClicked = false;
 
 submitButtom.addEventListener("click", addIdiom);
+logoutButton.addEventListener('click', Logout);
 
 const sha256 = async (str) => {
   return await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
@@ -87,8 +88,6 @@ async function Logout()
   localStorage.clear('access_token');
   window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
 }
-
-logoutButton.addEventListener('click', Logout);
 
 function addIdiom() {
   let addedIdiom = idiom.value;

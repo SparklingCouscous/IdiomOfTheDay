@@ -41,13 +41,11 @@
 
                 <section class="delete" id="deleteTab">
                     <section class="content">
-                        <form action="http://localhost:8080/api/idiom/delete" method="POST" id="deleteForm">
-                            <p>Delete Idiom By its ID</p>
-                            <input type="number" placeholder="ID" name="id" id="idiom" required>
-                            <br>
-                            <button class="submit" type="submit" id="Submit">Delete Idiom</button>
-                            </form>
-                        </section>
+                        <p>Delete Idiom By its ID</p>
+                        <input type="number" placeholder="ID" name="id" id="idiom" required>
+                        <br>
+                        <button class="submit" id="Submit">Delete Idiom</button>
+                    </section>
                 </section>
 
                 <section class="view" id="viewTab">
@@ -73,18 +71,16 @@
                         <button id="search">Search for Idiom</button>
                     </section>
                     <section class="content-invisble" id="formSection">
-                        <form action="http://localhost:8080/api/idiom/update/" method="POST" id="idiomForm">
-                            <p>ID</p>
-                            <input type="number" placeholder="ID" name="id" id="updateId" readonly>
-                            <p>Update Idiom</p>
-                            <textarea type="text" placeholder="Idiom" name="idiom" id="updateIdiom"></textarea>
-                            <p>Update meaning</p>
-                            <textarea type="text" placeholder="Meaning" name="meaning" id="updateMeaning"></textarea>
-                            <p>Update origin</p>
-                            <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin"></textarea>
-                            <br>
-                            <button class="submit" type="submit" id="Submit">Update Idiom</button>
-                            </form>
+                        <p>ID</p>
+                        <input type="number" placeholder="ID" name="id" id="updateId" readonly>
+                        <p>Update Idiom</p>
+                        <textarea type="text" placeholder="Idiom" name="idiom" id="updateIdiom"></textarea>
+                        <p>Update meaning</p>
+                        <textarea type="text" placeholder="Meaning" name="meaning" id="updateMeaning"></textarea>
+                        <p>Update origin</p>
+                        <textarea type="text" placeholder="Origin" name="origin" id="updateOrigin"></textarea>
+                        <br>
+                        <button class="submit" id="Submit">Update Idiom</button>
                         </section>
                 </section>
             </section>
