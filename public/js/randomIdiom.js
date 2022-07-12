@@ -1,7 +1,7 @@
 function randomIdiom()
 {
-   
-    fetch('http://localhost:8080/api/idiom')
+
+    fetch("/api/idiom")
     .then((response) => {
         return response.json();
     })
@@ -11,10 +11,10 @@ function randomIdiom()
         document.getElementById('Description').innerHTML = data['Meaning'];
         document.getElementById('Origin').innerHTML = data['Origin'];
         
-    });
+    });  };
 
 
-}
+
 
 
 document.getElementById("randomButton").addEventListener("click", randomIdiom);
