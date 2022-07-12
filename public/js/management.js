@@ -54,7 +54,7 @@ if (searchParams.get("code") !== null || !!localStorage.getItem('access_token'))
   await fetch(
     `${cognitoLoginUrl}/oauth2/token?grant_type=authorization_code&code=${searchParams.get(
       "code"
-    )}&client_id=${clientId}&redirect_uri=http://localhost:8080/admin&code_verifier=${codeVerifier}`,
+    )}&client_id=${clientId}&redirect_uri=${window.location.protocol}//${window.location.host}/admin&code_verifier=${codeVerifier}`,
     {
       method: "POST",
       headers: new Headers({
@@ -84,5 +84,5 @@ async function Logout()
   // Logout on button click
   const logoutState = await generateNonce();
   localStorage.clear('access_token');
-  window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=http://localhost:8080/`;
+  window.location = `${cognitoLoginUrl}/logout?client_id=${clientId}&state=${logoutState}&logout_uri=${window.location.protocol}//${window.location.host}/`;
 }

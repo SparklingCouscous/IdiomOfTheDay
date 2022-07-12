@@ -84,7 +84,7 @@ const onSubmitCreate = () => {
     newIdiom.meaning = addedMeaning;
     newIdiom.origin = addedOrigin;
 
-    fetch('http://localhost:8080/api/idiom', {
+    fetch('/api/idiom', {
       method: 'POST',
       headers: {
         authorization: localStorage.getItem('access_token'),
@@ -132,7 +132,7 @@ const onSubmitUpdate = () => {
         origin,
     }
 
-    fetch('http://localhost:8080/api/idiom/update', {
+    fetch('/api/idiom/update', {
       method: 'POST',
       headers: {
         authorization: localStorage.getItem('access_token'),
@@ -167,7 +167,7 @@ const onSubmitDelete = () => {
     const idField = document.getElementById('deleteId');
     const id = idField.value;
 
-    fetch('http://localhost:8080/api/idiom/delete', {
+    fetch('/api/idiom/delete', {
       method: 'POST',
       headers: {
         authorization: localStorage.getItem('access_token'),
