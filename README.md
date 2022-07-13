@@ -3,9 +3,9 @@
 A website that provides the user with an idiom and its meaning everyday, and allows a user to randomly generate idioms.
 
 Hosted URLs:
-https://idiomoftheday.bbdgp.cloud/
-https://idiomoftheday.bbdgp.cloud/random
-https://idiomoftheday.bbdgp.cloud/admin
+- https://idiomoftheday.bbdgp.cloud/
+- https://idiomoftheday.bbdgp.cloud/random
+- https://idiomoftheday.bbdgp.cloud/admin
 
 # Technologies used:
 - HTML
