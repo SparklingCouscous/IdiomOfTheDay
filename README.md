@@ -1,6 +1,11 @@
 # Idiom Of The Day- Security Level-up project
 
-A website that provides the user with an idiom and its meaning everyday, and allows the user to browse through other idioms on the website
+A website that provides the user with an idiom and its meaning everyday, and allows a user to randomly generate idioms.
+
+Hosted URLs:
+https://idiomoftheday.bbdgp.cloud/
+https://idiomoftheday.bbdgp.cloud/random
+https://idiomoftheday.bbdgp.cloud/admin
 
 # Technologies used:
 - HTML
