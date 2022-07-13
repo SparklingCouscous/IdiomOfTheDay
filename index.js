@@ -14,7 +14,14 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    useDefaults: true,
+    directives: {
+      "connect-src": ["'self'", "https://idiom-a-day-sign-in.auth.us-east-1.amazoncognito.com"],
+    },
+  },
+}));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
