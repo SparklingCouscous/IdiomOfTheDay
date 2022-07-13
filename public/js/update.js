@@ -20,7 +20,7 @@ function getId()
 
 function getIdiom()
 {
-    fetch(`http://localhost:8080/api/idiom/one/${id}`)
+    fetch(`/api/idiom/one/${id}`)
     .then((response) => {
         return response.json();
     })

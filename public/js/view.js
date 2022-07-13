@@ -5,7 +5,7 @@ const table = document.getElementById("idiomTable");
 
 function getIdioms()
 {
-    fetch('http://localhost:8080/api/idiom/all')
+    fetch("/api/idiom/all")
     .then((response) => {
         return response.json();
     })
